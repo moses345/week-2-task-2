@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Number to word converter</title>
+    </head>
+    <body>
+        <p>Enter any number between 0 to 999:</p>
+        <input type="number" id="number" name="number"><br><br>
+        <button type="button" onclick="Convert()">Convert</button><br><br>
+        <input type="text" id="word" name="word" ><br>
+    </body>
+
+
+    <script>
+        //simple function to convert from numbers to words from 1 to 999
+function Convert(){
+    var num=document.getElementById("number").value;
+    var ones = new Array('', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine', ' ten', ' eleven', ' twelve', ' thirteen', ' fourteen', ' fifteen', ' sixteen', ' seventeen', ' eighteen', ' nineteen');
+    var tens = new Array('', '', ' twenty', ' thirty', ' forty', ' fifty', ' sixty', ' seventy', ' eighty', ' ninety');
+    var hundred = ' hundred';
+    var output = '';
+    var numString = num.toString();
+
+    if (num == 0) {
+        return document.getElementById("word").value="Zero";
+    }
+    //the case of 10, 11, 12 ,13, .... 19 
+    if (num < 20) {
+        output = ones[num];
+        return document.getElementById("word").value=output;
+    }
+
+    //100 and more
+    if (numString.length == 3) {
+        output = ones[parseInt(numString.charAt(0))] + hundred;
+        output += tens[parseInt(numString.charAt(1))];
+        output += ones[parseInt(numString.charAt(2))];
+        return document.getElementById("word").value=output;
+    }
+
+    if(numString.length>3)
+    {
+        return document.getElementById("word").value="Out Of Range";
+    }
+    
+
+    output += tens[parseInt(numString.charAt(0))];
+    output += ones[parseInt(numString.charAt(1))];
+    return document.getElementById("word").value=output;
+}   
+</script>
+
+</head>
+</html>
